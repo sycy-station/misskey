@@ -5168,6 +5168,10 @@ export interface Locale extends ILocale {
      */
     "messageToFollower": string;
     /**
+     * フォロワーへのメッセージ
+     */
+    "messageToFollower": string;
+    /**
      * 対象
      */
     "target": string;
