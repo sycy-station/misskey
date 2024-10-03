@@ -5,7 +5,7 @@
 
 import { Inject, Injectable } from '@nestjs/common';
 import { DI } from '@/di-symbols.js';
-import type { SigninsRepository, UserProfilesRepository } from '@/models/_.js';
+import type { SigninsRepository } from '@/models/_.js';
 import { IdService } from '@/core/IdService.js';
 import type { MiLocalUser } from '@/models/User.js';
 import { GlobalEventService } from '@/core/GlobalEventService.js';
