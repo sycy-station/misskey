@@ -148,7 +148,7 @@ if (requestUrl.hostname === 'music.youtube.com' && requestUrl.pathname.match('^/
 	requestUrl.hostname = 'www.youtube.com';
 }
 
-requestUrl.hash = '';
+// requestUrl.hash = '';
 
 window.fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${versatileLang}`)
 	.then(res => {
