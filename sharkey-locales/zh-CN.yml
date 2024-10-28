@@ -174,10 +174,4 @@ _initialTutorial:
   _reaction:
     letsTryReacting: "回应可以通过点击帖子中的「{reaction}」按钮来添加。试着给这个示例帖子添加一个回应！"
     reactDone: "通过按下「{undo}」按钮，可以取消已经添加的回应"
-_profile:
-  changeBackground: "修改背景"
-  updateBackground: "更新背景"
-  removeBackground: "删除背景"
-_serverDisconnectedBehavior:
-  disabled: "禁用警告"
 allowClickingNotifications: "允许点击弹出的通知"
