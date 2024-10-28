@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	ref="dialog"
 	:width="500"
 	:height="600"
-	@close="dialog?.close()"
+	@close="onClose"
 	@closed="$emit('closed')"
 >
 	<template #header>{{ i18n.ts.signup }}</template>
@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			:leaveToClass="$style.transition_x_leaveTo"
 		>
 			<template v-if="!isAcceptedServerRule">
-				<XServerRules @done="isAcceptedServerRule = true" @cancel="dialog?.close()"/>
+				<XServerRules @done="isAcceptedServerRule = true" @cancel="onClose"/>
 			</template>
 			<template v-else>
 				<XSignup :autoSet="autoSet" @signup="onSignup" @signupEmailPending="onSignupEmailPending" @approvalPending="onApprovalPending"/>
@@ -48,12 +48,18 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
 	(ev: 'done', res: Misskey.entities.SigninResponse): void;
+	(ev: 'cancelled'): void;
 	(ev: 'closed'): void;
 }>();
 
 const dialog = shallowRef<InstanceType<typeof MkModalWindow>>();
 
 const isAcceptedServerRule = ref(false);
+
+function onClose() {
+	emit('cancelled');
+	dialog.value?.close();
+}
 
 function onSignup(res: Misskey.entities.SigninResponse) {
 	emit('done', res);
@@ -65,7 +71,7 @@ function onSignupEmailPending() {
 }
 
 function onApprovalPending() {
-	dialog.value.close();
+	dialog.value?.close();
 }
 </script>
 

@@ -5191,6 +5191,10 @@ export interface Locale extends ILocale {
      * 名前に禁止されている文字列が含まれています。この名前を使用したい場合は、サーバー管理者にお問い合わせください。
      */
     "yourNameContainsProhibitedWordsDescription": string;
+    /**
+     * アカウントを選択してください
+     */
+    "pleaseSelectAccount": string;
     "_abuseUserReport": {
         /**
          * 転送
@@ -8439,13 +8443,25 @@ export interface Locale extends ILocale {
          */
         "callback": string;
         /**
+         * アクセスを許可しました
+         */
+        "accepted": string;
+        /**
          * アクセスを拒否しました
          */
         "denied": string;
         /**
+         * 以下のユーザーとして操作しています
+         */
+        "scopeUser": string;
+        /**
          * アプリケーションにアクセス許可を与えるには、ログインが必要です。
          */
         "pleaseLogin": string;
+        /**
+         * アクセスを許可すると、自動で以下のURLに遷移します
+         */
+        "byClickingYouWillBeRedirectedToThisUrl": string;
         /**
          * Allowed
          */
