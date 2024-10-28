@@ -38,7 +38,7 @@ const name = 'rss';
 const widgetPropsDef = {
 	url: {
 		type: 'string' as const,
-		default: 'http://feeds.afpbb.com/rss/afpbb/afpbbnews',
+		default: 'https://www.chinanews.com.cn/rss/scroll-news.xml',
 	},
 	refreshIntervalSec: {
 		type: 'number' as const,

@@ -152,9 +152,9 @@ export class DeleteAccountProcessorService {
 		{ // Send email notification
 			const profile = await this.userProfilesRepository.findOneByOrFail({ userId: user.id });
 			if (profile.email && profile.emailVerified) {
-				this.emailService.sendEmail(profile.email, 'Account deleted',
-					'Your account has been deleted.',
-					'Your account has been deleted.');
+				this.emailService.sendEmail(profile.email, 'Account deleted / 账户已删除',
+					'Your account has been deleted. / 您的账户已被删除。',
+					'Your account has been deleted. / 您的账户已被删除。');
 			}
 		}
 

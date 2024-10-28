@@ -754,9 +754,9 @@ export class ExportAccountDataProcessorService {
 				archiveCleanup();
 				if (profile.email) {
 					this.emailService.sendEmail(profile.email,
-						'Your data archive is ready',
-						`Click the following link to download the archive: ${driveFile.url}<br/>It is also available in your drive.`,
-						`Click the following link to download the archive: ${driveFile.url}\r\n\r\nIt is also available in your drive.`,
+						'Your data archive is ready / 您的数据档案已准备好',
+						`Click the following link to download the archive: ${driveFile.url}<br/>It is also available in your drive. / 点击以下链接下载档案: ${driveFile.url}<br/>它也可以在您的云盘中找到。`,
+						`Click the following link to download the archive: ${driveFile.url}\r\n\r\nIt is also available in your drive. / 点击以下链接下载档案: ${driveFile.url}\r\n\r\n它也可以在您的云盘中找到。`,
 					);
 				}
 				resolve();

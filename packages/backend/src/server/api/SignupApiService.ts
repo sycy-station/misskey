@@ -206,9 +206,9 @@ export class SignupApiService {
 
 			const link = `${this.config.url}/signup-complete/${code}`;
 
-			this.emailService.sendEmail(emailAddress!, 'Signup',
-				`To complete signup, please click this link:<br><a href="${link}">${link}</a>`,
-				`To complete signup, please click this link: ${link}`);
+			this.emailService.sendEmail(emailAddress!, 'Signup / 注册',
+				`To complete signup, please click this link / 要完成注册，请点击此链接:<br><a href="${link}">${link}</a>`,
+				`To complete signup, please click this link / 要完成注册，请点击此链接: ${link}`);
 
 			if (ticket) {
 				await this.registrationTicketsRepository.update(ticket.id, {
@@ -244,9 +244,9 @@ export class SignupApiService {
 				const profile = await this.userProfilesRepository.findOneBy({ userId: moderator.id });
 
 				if (profile?.email) {
-					this.emailService.sendEmail(profile.email, 'New user awaiting approval',
-						`A new user called ${account.username} is awaiting approval with the following reason: "${reason}"`,
-						`A new user called ${account.username} is awaiting approval with the following reason: "${reason}"`);
+					this.emailService.sendEmail(profile.email, 'New user awaiting approval / 等待批准的新用户',
+						`A new user called ${account.username} is awaiting approval with the following reason: "${reason}" / 新用户 ${account.username} 正在等待批准，原因是：“${reason}”`,
+						`A new user called ${account.username} is awaiting approval with the following reason: "${reason}" / 新用户 ${account.username} 正在等待批准，原因是：“${reason}”`);
 				}
 			}
 

@@ -182,6 +182,7 @@ export const defaultStore = markRaw(new Storage('base', {
 		default: [
 			'notifications',
 			'explore',
+			'channels',
 			'followRequests',
 			'-',
 			'announcements',
@@ -190,6 +191,7 @@ export const defaultStore = markRaw(new Storage('base', {
 			'favorites',
 			'drive',
 			'achievements',
+			'profile',
 		],
 	},
 	visibility: {
@@ -377,11 +379,11 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	emojiPickerWidth: {
 		where: 'device',
-		default: 1,
+		default: 5,
 	},
 	emojiPickerHeight: {
 		where: 'device',
-		default: 2,
+		default: 4,
 	},
 	emojiPickerStyle: {
 		where: 'device',

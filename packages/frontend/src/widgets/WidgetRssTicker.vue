@@ -42,7 +42,7 @@ const name = 'rssTicker';
 const widgetPropsDef = {
 	url: {
 		type: 'string' as const,
-		default: 'http://feeds.afpbb.com/rss/afpbb/afpbbnews',
+		default: 'https://www.chinanews.com.cn/rss/scroll-news.xml',
 	},
 	shuffle: {
 		type: 'boolean' as const,

@@ -175,17 +175,17 @@
 				<path d="M12 9v2m0 4v.01"></path>
 				<path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
 			</svg>
-			<h1>Failed to load<br>読み込みに失敗しました</h1>
+			<h1>Failed to load<br>加载失败</h1>
 			<button class="button-big" onclick="location.reload(true);">
-				<span class="button-label-big">Reload / リロード</span>
+				<span class="button-label-big">Reload / 重新加载</span>
 			</button>
-			<p><b>The following actions may solve the problem. / 以下を行うと解決する可能性があります。</b></p>
-			<p>Update your os and browser / ブラウザおよびOSを最新バージョンに更新する</p>
-			<p>Disable an adblocker / アドブロッカーを無効にする</p>
-			<p>Clear the browser cache / ブラウザのキャッシュをクリアする</p>
-			<p>&#40;Tor Browser&#41; Set dom.webaudio.enabled to true / dom.webaudio.enabledをtrueに設定する</p>
+			<p><b>The following actions may solve the problem. / 以下操作可能会解决该问题。</b></p>
+			<p>Clear the browser cache / 清除浏览器缓存</p>
+			<p>Update your os and browser / 将操作系统和浏览器更新到最新版本</p>
+			<p>Disable an adblocker / 禁用广告拦截器</p>
+	 		<p>&#40;Tor Browser&#41; Set dom.webaudio.enabled to true / dom.webaudio.enabled设置为true</p>
 			<details style="color: #86b300;">
-				<summary>Other options / その他のオプション</summary>
+				<summary>Other options / 其他选项</summary>
 				<a href="/flush">
 					<button class="button-small">
 						<span class="button-label-small">Clear preferences and cache</span>

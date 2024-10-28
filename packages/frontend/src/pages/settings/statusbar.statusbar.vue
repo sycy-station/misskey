@@ -108,7 +108,7 @@ const statusbar = reactive(deepClone(defaultStore.state.statusbars.find(x => x.i
 watch(() => statusbar.type, () => {
 	if (statusbar.type === 'rss') {
 		statusbar.name = 'NEWS';
-		statusbar.props.url = 'http://feeds.afpbb.com/rss/afpbb/afpbbnews';
+		statusbar.props.url = 'https://www.chinanews.com.cn/rss/scroll-news.xml';
 		statusbar.props.shuffle = true;
 		statusbar.props.refreshIntervalSec = 120;
 		statusbar.props.display = 'marquee';

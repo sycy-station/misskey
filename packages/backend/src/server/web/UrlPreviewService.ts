@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import https from 'node:https';
 import { Inject, Injectable } from '@nestjs/common';
 import { summaly } from '@misskey-dev/summaly';
 import { SummalyResult } from '@misskey-dev/summaly/built/summary.js';
@@ -156,6 +157,97 @@ export class UrlPreviewService {
 			operationTimeout: meta.urlPreviewTimeout,
 			contentLengthLimit: meta.urlPreviewMaximumContentLength,
 			contentLengthRequired: meta.urlPreviewRequireContentLength,
+			plugins: [
+				{
+					test: (url) => /^https:\/\/(www.)?bilibili.com\/video\/([a-zA-Z0-9]+)/.test(url.toString()),
+					async summarize(url, opts) {
+						const summary = await summaly(url.toString(), { ...opts, plugins: [] });
+						const bilibiliMatch = summary.url.match(/^https:\/\/[^/]*?bilibili.com\/video\/([a-zA-Z0-9]+)/);
+						if (bilibiliMatch?.[1] && summary.player.url == null) {
+							summary.player.url = `https://player.bilibili.com/player.html?isOutside=true&bvid=${bilibiliMatch[1]}`;
+							summary.player.width = 640;
+							summary.player.height = 360;
+						}
+						return summary;
+					},
+				},
+				{
+					test: (url) => /^https:\/\/b23.tv\/([a-zA-Z0-9]+)/.test(url.toString()),
+					summarize(url, opts) {
+						return new Promise((resolve, reject) => {
+							https.request({
+								hostname: 'b23.tv',
+								path: url.pathname,
+								method: 'GET',
+								headers: {
+									'User-Agent': 'Mozilla/5.0 (compatible)',
+								},
+							}, (res) => {
+								const location = res.headers['location'] ?? '';
+								const bilibiliMatch = location.match(/^https:\/\/www.bilibili.com\/video\/([a-zA-Z0-9]+)/);
+								if (!location || !bilibiliMatch?.[1]) {
+									summaly(url.toString(), { ...opts, plugins: [] }).then(val => resolve(val)).catch(reject); // fallback;
+								} else {
+									summaly(`https://www.bilibili.com/video/${bilibiliMatch[1]}`, opts).then(val => resolve(val)).catch(reject);
+								}
+							}).end();
+						});
+					},
+				},
+				{
+					test: (url) => /^https?:\/\/[^\/]*?music.163.com\/[\s\S]*?song\?[\s\S]*id=([\d]+)/.test(url.toString()),
+					async summarize(url, opts) {
+						const netEaseUrl = new URL(url.toString().replaceAll('/#/song', '/m/song')); // fuck music163's /#/
+						if (netEaseUrl.searchParams.get('id')) {
+							const summary = await summaly(`https://music.163.com/song?id=${netEaseUrl.searchParams.get('id')}`, { ...opts, plugins: [] });
+							summary.player.url = `https://music.163.com/outchain/player?type=2&id=${netEaseUrl.searchParams.get('id')}&auto=1&height=66`;
+							summary.player.width = 330;
+							summary.player.height = 42;
+							return summary;
+						} else {
+							return await summaly(url.toString(), { ...opts, plugins: [] });
+						}
+					},
+				},
+				{
+					test: (url) => /^https?:\/\/[^\/]*?music.163.com\/song\/([\d]+)/.test(url.toString()),
+					async summarize(url, opts) {
+						const id = url.toString().match(/^https?:\/\/[^\/]*?music.163.com\/song\/([\d]+)/)?.[1];
+						if (id) {
+							const summary = await summaly(`https://music.163.com/song?id=${id}`, { ...opts, plugins: [] });
+							summary.player.url = `https://music.163.com/outchain/player?type=2&id=${id}&auto=1&height=66`;
+							summary.player.width = 330;
+							summary.player.height = 42;
+							return summary;
+						} else {
+							return await summaly(url.toString(), { ...opts, plugins: [] });
+						}
+					},
+				},
+				{
+					test: (url) => /^https?:\/\/163cn.tv\//.test(url.toString()),
+					summarize(url, opts) {
+						return new Promise((resolve, reject) => {
+							https.request({
+								hostname: '163cn.tv',
+								path: url.pathname,
+								method: 'GET',
+								headers: {
+									'User-Agent': 'Mozilla/5.0 (compatible)',
+								},
+							}, (res) => {
+								const location = res.headers['location'] ?? '';
+								const netEaseUrl = new URL(location.replaceAll('/#/song', '/m/song')); // fuck music163's /#/
+								if (!location || !netEaseUrl.searchParams.get('id')) {
+									summaly(url.toString(), { ...opts, plugins: [] }).then(val => resolve(val)).catch(reject); // fallback;
+								} else {
+									summaly(`https://music.163.com/song?id=${netEaseUrl.searchParams.get('id')}`, opts).then(val => resolve(val)).catch(reject);
+								}
+							}).end();
+						});
+					},
+				},
+			],
 		});
 	}
 

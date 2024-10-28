@@ -47,9 +47,9 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 			});
 
 			if (profile?.email) {
-				this.emailService.sendEmail(profile.email, 'Account Approved',
-					'Your Account has been approved have fun socializing!',
-					'Your Account has been approved have fun socializing!');
+				this.emailService.sendEmail(profile.email, 'Account Approved / 帐户已批准',
+					'Your Account has been approved have fun socializing! / 您的帐户已获得批准，祝您社交愉快',
+					'Your Account has been approved have fun socializing! / 您的帐户已获得批准，祝您社交愉快');
 			}
 
 			this.moderationLogService.log(me, 'approve', {

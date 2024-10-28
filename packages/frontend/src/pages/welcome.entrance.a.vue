@@ -169,7 +169,7 @@ misskeyApiGet('federation/instances', {
 		backdrop-filter: var(--blur, blur(15px));
 		border-radius: var(--radius-ellipse);
 		overflow: clip;
-		width: 800px;
+		width: 700px;
 		padding: 8px 0;
 
 		@media (max-width: 900px) {

@@ -68,7 +68,7 @@ const url = computed(() => {
 	if (rawUrl.value == null) return undefined;
 
 	const proxied =
-		(rawUrl.value.startsWith('/emoji/') || (props.useOriginalSize && isLocal.value))
+		(rawUrl.value.startsWith('/emoji/') || rawUrl.value.startsWith('https://wework.qpic.cn/') || rawUrl.value.startsWith('https://s2.loli.net/') || (props.useOriginalSize && isLocal.value))
 			? rawUrl.value
 			: getProxiedImageUrl(
 				rawUrl.value,
