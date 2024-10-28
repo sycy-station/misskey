@@ -87,8 +87,6 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				return;
 			}
 
-			const instance = await this.metaService.fetch();
-
 			// if (instance.deeplAuthKey == null && !instance.deeplFreeMode) {
 			// 	throw new ApiError(meta.errors.unavailable);
 			// }
@@ -160,7 +158,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				return result;
 			};
 
-			if (instance.deeplAuthKey == null && !instance.deeplFreeMode || instance.deeplFreeMode && !instance.deeplFreeInstance) {
+			if (this.serverSettings.deeplAuthKey == null && !this.serverSettings.deeplFreeMode || this.serverSettings.deeplFreeMode && !this.serverSettings.deeplFreeInstance) {
 				return await translateByGoogle(note.text);
 			}
 
