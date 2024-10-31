@@ -190,7 +190,6 @@ export const defaultStore = markRaw(new Storage('base', {
 			'-',
 			'favorites',
 			'drive',
-			'achievements',
 			'profile',
 		],
 	},
