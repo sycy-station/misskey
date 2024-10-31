@@ -5195,6 +5195,10 @@ export interface Locale extends ILocale {
      * アカウントを選択してください
      */
     "pleaseSelectAccount": string;
+    /**
+     * 利用可能なロール
+     */
+    "availableRoles": string;
     "_abuseUserReport": {
         /**
          * 転送
