@@ -139,12 +139,12 @@ export function promiseDialog<T extends Promise<any>>(
 }
 
 let popupIdCount = 0;
-export const popups = ref([]) as Ref<{
+export const popups = ref<{
 	id: number;
 	component: Component;
 	props: Record<string, any>;
 	events: Record<string, any>;
-}[]>;
+}[]>([]);
 
 const zIndexes = {
 	veryLow: 500000,
@@ -463,7 +463,7 @@ type SelectItem<C> = {
 };
 
 // default が指定されていたら result は null になり得ないことを保証する overload function
-export function select<C = any>(props: {
+export function select<C = unknown>(props: {
 	title?: string;
 	text?: string;
 	default: string;
@@ -476,7 +476,7 @@ export function select<C = any>(props: {
 } | {
 	canceled: false; result: C;
 }>;
-export function select<C = any>(props: {
+export function select<C = unknown>(props: {
 	title?: string;
 	text?: string;
 	default?: string | null;
@@ -489,7 +489,7 @@ export function select<C = any>(props: {
 } | {
 	canceled: false; result: C | null;
 }>;
-export function select<C = any>(props: {
+export function select<C = unknown>(props: {
 	title?: string;
 	text?: string;
 	default?: string | null;
@@ -696,8 +696,8 @@ export function post(props: Record<string, any> = {}): Promise<void | boolean> {
 	pleaseLogin(undefined, (props.initialText || props.initialNote ? {
 		type: 'share',
 		params: {
-			text: props.initialText ?? props.initialNote.text,
-			visibility: props.initialVisibility ?? props.initialNote?.visibility,
+			text: props.initialText ?? props.initialNote?.text ?? '',
+			visibility: props.initialVisibility ?? props.initialNote?.visibility ?? 'public',
 			localOnly: (props.initialLocalOnly || props.initialNote?.localOnly) ? '1' : '0',
 		},
 	} : undefined));
