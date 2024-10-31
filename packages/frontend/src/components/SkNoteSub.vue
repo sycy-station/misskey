@@ -563,7 +563,8 @@ if (props.detail) {
 @container (max-width: 400px) {
 	.noteFooterButton {
 		&:not(:last-child) {
-			margin-right: 0.7em;
+			// margin-right: 0.7em;
+			flex: 1;
 		}
 	}
 }
