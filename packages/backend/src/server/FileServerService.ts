@@ -118,7 +118,7 @@ export class FileServerService {
 	@bindThis
 	private async sendDriveFile(request: FastifyRequest<{ Params: { key: string; } }>, reply: FastifyReply) {
 		const key = request.params.key;
-		const file = await this.getFileFromKey(key).then();
+		const file = await this.getFileFromKey(key);
 
 		if (file === '404') {
 			reply.code(404);
