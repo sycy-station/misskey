@@ -167,15 +167,15 @@ useNoteCapture({
 	onDeleteCallback: props.detail && props.depth < numberOfReplies.value ? props.onDeleteCallback : undefined,
 });
 
-if ($i) {
-	misskeyApi('notes/renotes', {
-		noteId: appearNote.value.id,
-		userId: $i.id,
-		limit: 1,
-	}).then((res) => {
-		renoted.value = res.length > 0;
-	});
-}
+// if ($i) {
+// 	misskeyApi('notes/renotes', {
+// 		noteId: appearNote.value.id,
+// 		userId: $i.id,
+// 		limit: 1,
+// 	}).then((res) => {
+// 		renoted.value = res.length > 0;
+// 	});
+// }
 
 function focus() {
 	el.value.focus();

@@ -353,15 +353,15 @@ watch(() => props.expandAllCws, (expandAllCws) => {
 	if (expandAllCws !== showContent.value) showContent.value = expandAllCws;
 });
 
-if ($i) {
-	misskeyApi('notes/renotes', {
-		noteId: appearNote.value.id,
-		userId: $i.id,
-		limit: 1,
-	}).then((res) => {
-		renoted.value = res.length > 0;
-	});
-}
+// if ($i) {
+// 	misskeyApi('notes/renotes', {
+// 		noteId: appearNote.value.id,
+// 		userId: $i.id,
+// 		limit: 1,
+// 	}).then((res) => {
+// 		renoted.value = res.length > 0;
+// 	});
+// }
 
 let renoting = false;
 
