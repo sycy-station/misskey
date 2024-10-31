@@ -26,6 +26,11 @@ import { type Keymap, makeHotkey } from '@/scripts/hotkey.js';
 import { addCustomEmoji, removeCustomEmojis, updateCustomEmojis } from '@/custom-emojis.js';
 
 export async function mainBoot() {
+	const dev = _DEV_;
+	if (!dev && location.protocol !== 'https:') {
+		location.href = 'https://' + location.host + location.pathname + location.search;
+	}
+
 	const { isClientUpdated } = await common(() => createApp(
 		new URLSearchParams(window.location.search).has('zen') || (ui === 'deck' && deckStore.state.useSimpleUiForNonRootPages && location.pathname !== '/') ? defineAsyncComponent(() => import('@/ui/zen.vue')) :
 		!$i ? defineAsyncComponent(() => import('@/ui/visitor.vue')) :
