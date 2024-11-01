@@ -377,6 +377,7 @@ export function pluginReplaceIcons() {
 					'ti-webhook': 'ph-webhooks-logo ph-bold ph-lg',
  					'ti ti-caret-down': 'ph-caret-down ph-bold ph-lg',
  					'ti ti-chevron-down': 'ph-caret-down ph-bold ph-lg',
+ 					'ti ti-login-2': 'ph-sign-in ph-bold ph-lg',
 				},
 			}),
 	];
