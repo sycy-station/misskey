@@ -17,6 +17,10 @@ export type MiNotification = {
 	notifierId: MiUser['id'];
 	noteId: MiNote['id'];
 } | {
+	type: 'login';
+	id: string;
+	createdAt: string;
+} | {
 	type: 'follow';
 	id: string;
 	createdAt: string;
