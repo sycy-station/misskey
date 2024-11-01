@@ -4469,7 +4469,14 @@ export type components = {
       exportedEntity: 'antenna' | 'blocking' | 'clip' | 'customEmoji' | 'favorite' | 'following' | 'muting' | 'note' | 'userList';
       /** Format: id */
       fileId: string;
-    }) | ({
+    }) | {
+      /** Format: id */
+      id: string;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      type: 'login';
+    } | ({
       /** Format: id */
       id: string;
       /** Format: date-time */

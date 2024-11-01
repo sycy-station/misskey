@@ -216,12 +216,6 @@ async function composeNotification(data: PushNotificationDataMap[keyof PushNotif
 						data,
 					}];
 
-				case 'login':
-					return [i18n.ts._notification.login, {
-						badge: iconUrl('login-2'),
-						data,
-					}];
-
 				case 'exportCompleted': {
 					const entityName = {
 						antenna: i18n.ts.antennas,
