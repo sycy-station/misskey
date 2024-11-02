@@ -17,7 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<template #label>{{ i18n.ts.host }}</template>
 					<option value="all" default>{{ i18n.ts.all }}</option>
 					<option value="local">{{ i18n.ts.local }}</option>
-					<option v-if="noteSearchableScope === 'global'" value="specified">{{ i18n.ts.specifyHost }}</option>
+					<!-- <option v-if="noteSearchableScope === 'global'" value="specified">{{ i18n.ts.specifyHost }}</option> -->
 				</MkRadios>
 				<MkInput v-if="noteSearchableScope === 'global'" v-model="hostInput" :disabled="hostSelect !== 'specified'" :large="true" type="search">
 					<template #prefix><i class="ti ti-server"></i></template>

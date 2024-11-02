@@ -60,6 +60,7 @@ import { i18n } from '@/i18n.js';
 import { dateString } from '@/filters/date.js';
 import MkClipPreview from '@/components/MkClipPreview.vue';
 import { defaultStore } from '@/store.js';
+import { instance } from '@/instance.js';
 
 const MkNoteDetailed = defineAsyncComponent(() =>
 	(defaultStore.state.noteDesign === 'misskey') ? import('@/components/MkNoteDetailed.vue') :
@@ -132,6 +133,10 @@ function fetchNote() {
 			}).then((_clips) => {
 				clips.value = _clips;
 			});
+		}
+		if(note.value.user.host != null && !instance.policies?.gtlAvailable) {
+			note.value = null;
+			error.value = '403'
 		}
 	}).catch(err => {
 		error.value = err;
