@@ -60,7 +60,7 @@ import { i18n } from '@/i18n.js';
 import { dateString } from '@/filters/date.js';
 import MkClipPreview from '@/components/MkClipPreview.vue';
 import { defaultStore } from '@/store.js';
-import { instance } from '@/instance.js';
+import { isAvailableBasicTimeline } from '@/timelines.js';
 
 const MkNoteDetailed = defineAsyncComponent(() =>
 	(defaultStore.state.noteDesign === 'misskey') ? import('@/components/MkNoteDetailed.vue') :
@@ -134,7 +134,7 @@ function fetchNote() {
 				clips.value = _clips;
 			});
 		}
-		if(note.value.user.host != null && !instance.policies?.gtlAvailable) {
+		if(note.value.user.host != null && !isAvailableBasicTimeline('global')) {
 			note.value = null;
 			error.value = '403'
 		}
