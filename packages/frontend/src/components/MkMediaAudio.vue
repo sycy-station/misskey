@@ -9,6 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	v-hotkey="keymap"
 	tabindex="0"
 	:class="[
+		isPlaying ? 'media-playing' : '',
 		$style.audioContainer,
 		(audio.isSensitive && defaultStore.state.highlightSensitiveMedia) && $style.sensitive,
 	]"
@@ -262,7 +263,7 @@ const rangePercent = computed({
 		audioEl.value.currentTime = to * durationMs.value / 1000;
 	},
 });
-const volume = ref(.25);
+const volume = ref(.7);
 const speed = ref(1);
 const loop = ref(false); // TODO: ドライブファイルのフラグに置き換える
 const bufferedEnd = ref(0);
@@ -279,6 +280,9 @@ function togglePlayPause() {
 		audioEl.value.pause();
 		isPlaying.value = false;
 	} else {
+		document.querySelectorAll('.media-playing').forEach((div)=>{
+			(div.querySelector('audio,video') as HTMLMediaElement)?.pause();
+		})
 		audioEl.value.play();
 		isPlaying.value = true;
 		oncePlayed.value = true;

@@ -125,7 +125,7 @@ onMounted(() => {
 		mainClass: 'pswp',
 		children: '.image',
 		thumbSelector: '.image',
-		loop: false,
+		loop: true,
 		padding: window.innerWidth > 500 ? {
 			top: 32,
 			bottom: 90,

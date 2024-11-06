@@ -9,6 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	v-hotkey="keymap"
 	tabindex="0"
 	:class="[
+		isPlaying ? 'media-playing' : '',
 		$style.videoContainer,
 		controlsShowing && $style.active,
 		(video.isSensitive && defaultStore.state.highlightSensitiveMedia) && $style.sensitive,
@@ -330,6 +331,9 @@ function togglePlayPause() {
 		videoEl.value.pause();
 		isPlaying.value = false;
 	} else {
+		document.querySelectorAll('.media-playing').forEach((div)=>{
+			(div.querySelector('audio,video') as HTMLMediaElement)?.pause();
+		})
 		videoEl.value.play();
 		isPlaying.value = true;
 		oncePlayed.value = true;
