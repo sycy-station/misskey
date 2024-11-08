@@ -22,13 +22,13 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<MkInput v-if="noteSearchableScope === 'global'" v-model="hostInput" :disabled="hostSelect !== 'specified'" :large="true" type="search">
 					<template #prefix><i class="ti ti-server"></i></template>
 				</MkInput>
-				<MkSwitch v-model="order">Sort by newest to oldest</MkSwitch>
+				<MkSwitch v-model="order">按最新到最旧排序</MkSwitch>
 				<MkSelect v-model="filetype" small>
-					<template #label>File Type</template>
+					<template #label>文件类型</template>
 					<option :value="null">None</option>
-					<option value="image">Images</option>
-					<option value="video">Videos</option>
-					<option value="audio">Audio</option>
+					<option value="image">图片</option>
+					<option value="video">视频</option>
+					<option value="audio">音频</option>
 				</MkSelect>
 
 				<MkFolder :defaultOpen="true">
