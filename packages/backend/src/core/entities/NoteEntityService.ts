@@ -355,6 +355,13 @@ export class NoteEntityService implements OnModuleInit {
 		const packedFiles = options?._hint_?.packedFiles;
 		const packedUsers = options?._hint_?.packedUsers;
 
+		const renotedByMe = me
+			? this.notesRepository.createQueryBuilder('note')
+				.where('note.renoteId = :renoteId', { renoteId: note.id })
+				.andWhere('note.userId = :meId', { meId: me.id })
+				.andWhere('note.text IS NULL').getExists()
+			: false;
+
 		const packed: Packed<'Note'> = await awaitAll({
 			id: note.id,
 			createdAt: this.idService.parse(note.id).date.toISOString(),
@@ -378,6 +385,7 @@ export class NoteEntityService implements OnModuleInit {
 			fileIds: note.fileIds,
 			files: packedFiles != null ? this.packAttachedFiles(note.fileIds, packedFiles) : this.driveFileEntityService.packManyByIds(note.fileIds),
 			replyId: note.replyId,
+			renotedByMe: renotedByMe,
 			renoteId: note.renoteId,
 			channelId: note.channelId ?? undefined,
 			channel: channel ? {

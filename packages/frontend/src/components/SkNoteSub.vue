@@ -181,6 +181,10 @@ useNoteCapture({
 	onDeleteCallback: props.detail && props.depth < numberOfReplies.value ? props.onDeleteCallback : undefined,
 });
 
+if ($i) {
+	renoted.value = appearNote.value.renotedByMe || (Misskey.note.isPureRenote(note.value) && note.value.userId === $i.id);
+}
+
 // if ($i) {
 // 	misskeyApi('notes/renotes', {
 // 		noteId: appearNote.value.id,
@@ -322,6 +326,7 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 		}).then(() => {
 			os.toast(i18n.ts.renoted);
 			renoted.value = true;
+			appearNote.value.renoteCount += 1;
 		});
 	} else {
 		const el = renoteButton.value as HTMLElement | null | undefined;
@@ -341,6 +346,7 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 		}).then(() => {
 			os.toast(i18n.ts.renoted);
 			renoted.value = true;
+			appearNote.value.renoteCount += 1;
 		});
 	}
 }

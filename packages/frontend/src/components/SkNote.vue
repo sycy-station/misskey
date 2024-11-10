@@ -468,6 +468,11 @@ if (!props.mock) {
 		});
 	});
 
+	
+	if ($i) {
+		renoted.value = appearNote.value.renotedByMe || (Misskey.note.isPureRenote(note.value) && note.value.userId === $i.id);
+	}
+
 	// if ($i) {
 	// 	misskeyApi('notes/renotes', {
 	// 		noteId: appearNote.value.id,
@@ -537,6 +542,7 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 			}).then(() => {
 				os.toast(i18n.ts.renoted);
 				renoted.value = true;
+				appearNote.value.renoteCount += 1;
 			}).finally(() => { renoting = false; });
 		}
 	} else if (!appearNote.value.channel || appearNote.value.channel.allowRenoteToExternal) {
@@ -558,6 +564,7 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 			}).then(() => {
 				os.toast(i18n.ts.renoted);
 				renoted.value = true;
+				appearNote.value.renoteCount += 1;
 			}).finally(() => { renoting = false; });
 		}
 	}
