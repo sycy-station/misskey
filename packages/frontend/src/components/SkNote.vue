@@ -542,7 +542,9 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 			}).then(() => {
 				os.toast(i18n.ts.renoted);
 				renoted.value = true;
-				appearNote.value.renoteCount += 1;
+				if (appearNote.value.userId !== $i?.id) {
+					appearNote.value.renoteCount += 1;
+				}
 			}).finally(() => { renoting = false; });
 		}
 	} else if (!appearNote.value.channel || appearNote.value.channel.allowRenoteToExternal) {
@@ -564,7 +566,9 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 			}).then(() => {
 				os.toast(i18n.ts.renoted);
 				renoted.value = true;
-				appearNote.value.renoteCount += 1;
+				if (appearNote.value.userId !== $i?.id) {
+					appearNote.value.renoteCount += 1;
+				}
 			}).finally(() => { renoting = false; });
 		}
 	}

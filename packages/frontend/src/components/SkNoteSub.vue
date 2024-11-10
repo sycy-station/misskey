@@ -326,7 +326,9 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 		}).then(() => {
 			os.toast(i18n.ts.renoted);
 			renoted.value = true;
-			appearNote.value.renoteCount += 1;
+			if (appearNote.value.userId !== $i?.id) {
+				appearNote.value.renoteCount += 1;
+			}
 		});
 	} else {
 		const el = renoteButton.value as HTMLElement | null | undefined;
@@ -346,7 +348,9 @@ function renote(visibility: Visibility, localOnly: boolean = false) {
 		}).then(() => {
 			os.toast(i18n.ts.renoted);
 			renoted.value = true;
-			appearNote.value.renoteCount += 1;
+			if (appearNote.value.userId !== $i?.id) {
+				appearNote.value.renoteCount += 1;
+			}
 		});
 	}
 }
