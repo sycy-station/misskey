@@ -182,7 +182,7 @@ useNoteCapture({
 });
 
 if ($i) {
-	renoted.value = appearNote.value.renotedByMe || (Misskey.note.isPureRenote(note.value) && note.value.userId === $i.id);
+	renoted.value = appearNote.value.renotedByMe || (Misskey.note.isPureRenote(props.note) && props.note.userId === $i.id);
 }
 
 // if ($i) {
