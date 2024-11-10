@@ -740,6 +740,10 @@ function undoRenote(note) : void {
 	os.toast(i18n.ts.rmboost);
 	renoted.value = false;
 
+	if (appearNote.value.userId !== $i?.id) {
+		appearNote.value.renoteCount -= 1;
+	}
+
 	const el = renoteButton.value as HTMLElement | null | undefined;
 	if (el) {
 		const rect = el.getBoundingClientRect();
