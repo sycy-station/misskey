@@ -354,8 +354,8 @@ function onContextmenu(ev: MouseEvent) {
 			background: var(--accent);
 
 			&::after {
-				content: "\ea5e";
-				font-family: 'tabler-icons';
+				content: "\e182";
+				font-family: 'Phosphor-Bold';
 				position: absolute;
 				top: 50%;
 				left: 50%;
