@@ -164,7 +164,12 @@ export class UrlPreviewService {
 						const summary = await summaly(url.toString(), { ...opts, plugins: [] });
 						const bilibiliMatch = summary.url.match(/^https:\/\/[^/]*?bilibili.com\/video\/([a-zA-Z0-9]+)/);
 						if (bilibiliMatch?.[1] && summary.player.url == null) {
-							summary.player.url = `https://player.bilibili.com/player.html?isOutside=true&bvid=${bilibiliMatch[1]}`;
+							const videoId = bilibiliMatch[1];
+							if (videoId.startsWith('av')) {
+								summary.player.url = `https://player.bilibili.com/player.html?isOutside=true&aid=${videoId.slice(2)}`;
+							} else {
+								summary.player.url = `https://player.bilibili.com/player.html?isOutside=true&bvid=${videoId}`;
+							}
 							summary.player.width = 640;
 							summary.player.height = 360;
 						}
@@ -245,6 +250,20 @@ export class UrlPreviewService {
 								}
 							}).end();
 						});
+					},
+				},
+				{
+					test: (url) => /^https:\/\/(i\.y\.qq|y\.qq|music\.qq)\.com\/.*(songid=|songDetail\/)([0-9]+)/.test(url.toString()),
+					async summarize(url, opts) {
+						const summary = await summaly(url.toString(), { ...opts, plugins: [] });
+						const qqMusicMatch = summary.url.match(/(songid=|songDetail\/)([0-9]+)/);
+						if (qqMusicMatch?.[1] && summary.player.url == null) {
+							const songId = qqMusicMatch[1];
+							summary.player.url = `https://i.y.qq.com/n2/m/outchain/player/index.html?songid=${songId}`;
+							summary.player.width = 330;
+							summary.player.height = 29;
+						}
+						return summary;
 					},
 				},
 			],
