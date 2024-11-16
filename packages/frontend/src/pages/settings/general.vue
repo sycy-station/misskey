@@ -99,7 +99,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<option value="large">{{ i18n.ts.large }}</option>
 				</MkRadios>
 				<MkRadios v-model="noteDesign">
-					<template #label>Note Design</template>
+					<template #label>帖子样式</template>
 					<option value="sharkey"><i class="sk-icons sk-shark sk-icons-lg" style="top: 2px;position: relative;"></i> Sharkey</option>
 					<option value="misskey"><i class="sk-icons sk-misskey sk-icons-lg" style="top: 2px;position: relative;"></i> Misskey</option>
 				</MkRadios>
