@@ -415,7 +415,7 @@ export class ExportAccountDataProcessorService {
 			});
 		};
 
-		fs.mkdirSync(`${path}/files`);
+		// fs.mkdirSync(`${path}/files`);
 
 		await writeDrive(`{"metaVersion":1,"host":"${this.config.host}","exportedAt":"${new Date().toString()}","drive":[`);
 
@@ -424,20 +424,20 @@ export class ExportAccountDataProcessorService {
 		for (const file of driveFiles) {
 			const ext = mime.extension(file.type);
 			const fileName = file.name + '.' + ext;
-			const filePath = path + '/files/' + fileName;
-			fs.writeFileSync(filePath, '', 'binary');
-			let downloaded = false;
+			// const filePath = path + '/files/' + fileName;
+			// fs.writeFileSync(filePath, '', 'binary');
+			// let downloaded = false;
 
-			try {
-				await this.downloadService.downloadUrl(file.url, filePath);
-				downloaded = true;
-			} catch (e) {
-				this.logger.error(e instanceof Error ? e : new Error(e as string));
-			}
+			// try {
+			// 	await this.downloadService.downloadUrl(file.url, filePath);
+			// 	downloaded = true;
+			// } catch (e) {
+			// 	this.logger.error(e instanceof Error ? e : new Error(e as string));
+			// }
 
-			if (!downloaded) {
-				fs.unlinkSync(filePath);
-			}
+			// if (!downloaded) {
+			// 	fs.unlinkSync(filePath);
+			// }
 
 			const content = JSON.stringify({
 				fileName: fileName,
