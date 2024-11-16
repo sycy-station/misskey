@@ -21,11 +21,11 @@ SPDX-License-Identifier: AGPL-3.0-only
 		</div>
 		<MkA v-if="note.renoteId" :class="$style.rp" :to="`/notes/${note.renoteId}`" @click.stop>RN: ...</MkA>
 	</div>
-	<details v-if="note.files && note.files.length > 0" :open="!defaultStore.state.collapseFiles && !hideFiles">
+	<details v-if="note.files && note.files.length > 0" :open="!defaultStore.state.collapseFiles && !hideFiles" @click.stop>
 		<summary>({{ i18n.tsx.withNFiles({ n: note.files.length }) }})</summary>
 		<MkMediaList :mediaList="note.files"/>
 	</details>
-	<details v-if="note.poll">
+	<details v-if="note.poll" @click.stop>
 		<summary>{{ i18n.ts.poll }}</summary>
 		<MkPoll :noteId="note.id" :poll="note.poll"/>
 	</details>
