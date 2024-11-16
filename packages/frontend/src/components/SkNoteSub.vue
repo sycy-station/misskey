@@ -30,7 +30,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			<MkReactionsViewer ref="reactionsViewer" :note="note"/>
 			<footer :class="$style.footer">
 				<button class="_button" :class="$style.noteFooterButton" @click="reply()">
-					<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
+					<i class="ph-chat-circle-text ph-bold ph-lg"></i>
 					<p v-if="note.repliesCount > 0" :class="$style.noteFooterButtonCount">{{ note.repliesCount }}</p>
 				</button>
 				<button
@@ -41,7 +41,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					:style="renoted ? 'color: var(--accent) !important;' : ''"
 					@mousedown="renoted ? undoRenote() : boostVisibility()"
 				>
-					<i class="ph-rocket-launch ph-bold ph-lg"></i>
+					<i class="ph-share ph-bold ph-lg"></i>
 					<p v-if="note.renoteCount > 0" :class="$style.noteFooterButtonCount">{{ note.renoteCount }}</p>
 				</button>
 				<button

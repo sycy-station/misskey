@@ -63,10 +63,10 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<MkTime :time="appearNote.createdAt" mode="detail"/>
 				</div>
 				<button class="_button" :class="$style.noteFooterButton">
-					<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
+					<i class="ph-chat-circle-text ph-bold ph-lg"></i>
 				</button>
 				<button class="_button" :class="$style.noteFooterButton">
-					<i class="ph-rocket-launch ph-bold ph-lg"></i>
+					<i class="ph-share ph-bold ph-lg"></i>
 				</button>
 				<button class="_button" :class="$style.noteFooterButton">
 					<i class="ph-quotes ph-bold ph-lg"></i>

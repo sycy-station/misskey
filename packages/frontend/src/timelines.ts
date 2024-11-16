@@ -27,7 +27,7 @@ export function basicTimelineIconClass(timeline: BasicTimelineType): string {
 		case 'local':
 			return 'ti ti-planet';
 		case 'social':
-			return 'ti ti-universe';
+			return 'ph-rocket-launch ph-bold ph-lg';
 		case 'bubble':
 			return 'ph-drop ph-bold ph-lg';
 		case 'global':

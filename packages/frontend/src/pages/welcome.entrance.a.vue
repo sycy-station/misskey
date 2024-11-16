@@ -23,45 +23,44 @@ SPDX-License-Identifier: AGPL-3.0-only
 	<div class="contents">
 		<MkVisitorDashboard/>
 	</div>
-	<div v-if="instances && instances.length > 0" class="federation">
+	<!-- <div v-if="instances && instances.length > 0" class="federation">
 		<MarqueeText :duration="40">
 			<MkA v-for="instance in instances" :key="instance.id" :class="$style.federationInstance" :to="`/instance-info/${instance.host}`" behavior="window">
-				<!--<MkInstanceCardMini :instance="instance"/>-->
 				<img v-if="instance.iconUrl" class="icon" :src="getInstanceIcon(instance)" alt=""/>
 				<span class="name _monospace">{{ instance.host }}</span>
 			</MkA>
 		</MarqueeText>
-	</div>
+	</div> -->
 </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import * as Misskey from 'misskey-js';
+// import { ref } from 'vue';
+// import * as Misskey from 'misskey-js';
 import XTimeline from './welcome.timeline.vue';
-import MarqueeText from '@/components/MkMarquee.vue';
+// import MarqueeText from '@/components/MkMarquee.vue';
 import MkFeaturedPhotos from '@/components/MkFeaturedPhotos.vue';
 import misskeysvg from '/client-assets/sharkey.svg';
-import { misskeyApiGet } from '@/scripts/misskey-api.js';
+// import { misskeyApiGet } from '@/scripts/misskey-api.js';
 import MkVisitorDashboard from '@/components/MkVisitorDashboard.vue';
-import { getProxiedImageUrl } from '@/scripts/media-proxy.js';
+// import { getProxiedImageUrl } from '@/scripts/media-proxy.js';
 import { instance as meta } from '@/instance.js';
 
-const instances = ref<Misskey.entities.FederationInstance[]>();
+// const instances = ref<Misskey.entities.FederationInstance[]>();
 
-function getInstanceIcon(instance: Misskey.entities.FederationInstance): string {
-	if (!instance.iconUrl) {
-		return '';
-	}
-	return getProxiedImageUrl(instance.iconUrl, 'preview');
-}
+// function getInstanceIcon(instance: Misskey.entities.FederationInstance): string {
+// 	if (!instance.iconUrl) {
+// 		return '';
+// 	}
+// 	return getProxiedImageUrl(instance.iconUrl, 'preview');
+// }
 
-misskeyApiGet('federation/instances', {
-	sort: '+pubSub',
-	limit: 20,
-}).then(_instances => {
-	instances.value = _instances;
-});
+// misskeyApiGet('federation/instances', {
+// 	sort: '+pubSub',
+// 	limit: 20,
+// }).then(_instances => {
+// 	instances.value = _instances;
+// });
 </script>
 
 <style lang="scss" scoped>
@@ -158,24 +157,24 @@ misskeyApiGet('federation/instances', {
 		}
 	}
 
-	> .federation {
-		position: fixed;
-		bottom: 16px;
-		left: 0;
-		right: 0;
-		margin: auto;
-		background: var(--acrylicPanel);
-		-webkit-backdrop-filter: var(--blur, blur(15px));
-		backdrop-filter: var(--blur, blur(15px));
-		border-radius: var(--radius-ellipse);
-		overflow: clip;
-		width: 700px;
-		padding: 8px 0;
+	// > .federation {
+	// 	position: fixed;
+	// 	bottom: 16px;
+	// 	left: 0;
+	// 	right: 0;
+	// 	margin: auto;
+	// 	background: var(--acrylicPanel);
+	// 	-webkit-backdrop-filter: var(--blur, blur(15px));
+	// 	backdrop-filter: var(--blur, blur(15px));
+	// 	border-radius: var(--radius-ellipse);
+	// 	overflow: clip;
+	// 	width: 700px;
+	// 	padding: 8px 0;
 
-		@media (max-width: 900px) {
-			display: none;
-		}
-	}
+	// 	@media (max-width: 900px) {
+	// 		display: none;
+	// 	}
+	// }
 }
 </style>
 

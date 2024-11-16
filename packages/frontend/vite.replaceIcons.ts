@@ -108,7 +108,7 @@ export function pluginReplaceIcons() {
 			}),
 			iconsReplace({
 				values: {
-					'ti ti-repeat': 'ph-rocket-launch ph-bold ph-lg',
+					'ti ti-repeat': 'ph-share ph-bold ph-lg',
 				},
 				exclude: [
 					'**/components/MkMedia*',
@@ -145,7 +145,7 @@ export function pluginReplaceIcons() {
 					'ti ti-app-window': 'ph-app-window ph-bold ph-lg',
 					'ti ti-apple': 'ph-orange-slice ph-bold ph-lg',
 					'ti ti-archive': 'ph-archive ph-bold ph-lg',
-					'ti ti-arrow-back-up': 'ph-arrow-u-up-left ph-bold ph-lg',
+					'ti ti-arrow-back-up': 'ph-chat-circle-text ph-bold ph-lg',
 					'ti ti-arrow-bar-to-down': 'ph-arrow-line-down ph-bold ph-lg',
 					'ti ti-arrow-big-right': 'ph-arrow-fat-right ph-bold ph-lg',
 					'ti ti-arrow-down': 'ph-arrow-down ph-bold ph-lg',
@@ -321,7 +321,7 @@ export function pluginReplaceIcons() {
 					'ti ti-repeat-off': 'ph-repeat ph-bold ph-lg',
 					'ti ti-restore': 'ph-box-arrow-up ph-box ph-lg',
 					'ti ti-robot': 'ph-robot ph-bold ph-lg',
-					'ti ti-rocket': 'ph-rocket-launch ph-bold ph-lg',
+					'ti ti-rocket': 'ph-share ph-bold ph-lg',
 					'ti ti-rocket-off': 'ph-rocket ph-bold ph-lg',
 					'ti ti-rss': 'ph-rss ph-bold ph-lg',
 					'ti ti-search': 'ph-magnifying-glass ph-bold ph-lg',
@@ -346,7 +346,7 @@ export function pluginReplaceIcons() {
 					'ti ti-tool': 'ph-wrench ph-bold ph-lg',
 					'ti ti-trash': 'ph-trash ph-bold ph-lg',
 					'ti ti-trophy': 'ph-trophy ph-bold ph-lg',
-					'ti ti-universe': 'ph-rocket-launch ph-bold ph-lg',
+					'ti ti-universe': 'ph-share ph-bold ph-lg',
 					'ti ti-upload': 'ph-upload ph-bold ph-lg',
 					'ti ti-user': 'ph-user ph-bold ph-lg',
 					'ti ti-user-check': 'ph-user-check ph-bold ph-lg',
