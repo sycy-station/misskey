@@ -211,7 +211,10 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-	if (scrollEl) scrollEl.removeEventListener('scroll', onScrollContainerScroll);
+	if (scrollEl) {
+		scrollEl.removeEventListener('scroll', onScrollContainerScroll);
+		scrollEl.style.touchAction = 'auto';
+	}
 
 	unregisterEventListenersForReadyToPull();
 });
