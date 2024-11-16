@@ -207,7 +207,7 @@ export class UrlPreviewService {
 							const summary = await summaly(`https://music.163.com/song?id=${netEaseUrl.searchParams.get('id')}`, { ...opts, plugins: [] });
 							summary.player.url = `https://music.163.com/outchain/player?type=2&id=${netEaseUrl.searchParams.get('id')}&auto=1&height=66`;
 							summary.player.width = 330;
-							summary.player.height = 42;
+							summary.player.height = 40;
 							return summary;
 						} else {
 							return await summaly(url.toString(), { ...opts, plugins: [] });
@@ -222,7 +222,7 @@ export class UrlPreviewService {
 							const summary = await summaly(`https://music.163.com/song?id=${id}`, { ...opts, plugins: [] });
 							summary.player.url = `https://music.163.com/outchain/player?type=2&id=${id}&auto=1&height=66`;
 							summary.player.width = 330;
-							summary.player.height = 42;
+							summary.player.height = 40;
 							return summary;
 						} else {
 							return await summaly(url.toString(), { ...opts, plugins: [] });
