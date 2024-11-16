@@ -19,7 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			</button>
 		</div>
 		<div :class="$style.headerRight">
-			<button v-tooltip="'MFM Cheatsheet'" class="_button" :class="$style.headerRightItem" @click="MFMWindow"><i class="ph-notebook ph-bold ph-lg"></i></button>
+			<button v-tooltip="'标记语言速查表'" class="_button" :class="$style.headerRightItem" @click="MFMWindow"><i class="ph-notebook ph-bold ph-lg"></i></button>
 			<template v-if="!(channel != null && fixed)">
 				<button v-if="channel == null" ref="visibilityButton" v-click-anime v-tooltip="i18n.ts.visibility" :class="['_button', $style.headerRightItem, $style.visibility]" :disabled="editId != null" @click="setVisibility">
 					<span v-if="visibility === 'public'"><i class="ti ti-world"></i></span>

@@ -45,12 +45,12 @@ import MkInfo from '@/components/MkInfo.vue';
 
 const exampleCWNote = reactive<Misskey.entities.Note>({
 	id: '0000000000',
-	createdAt: '2019-04-14T17:30:49.181Z',
+	createdAt: '2024-04-14T17:30:49.181Z',
 	userId: '0000000001',
 	user: {
 		id: '0000000001',
-		name: '藍',
-		username: 'ai',
+		name: '泡泡',
+		username: 'paopao',
 		host: null,
 		avatarDecorations: [],
 		avatarUrl: '/client-assets/tutorial/ai.webp',

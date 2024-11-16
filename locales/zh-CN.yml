@@ -1363,10 +1363,10 @@ _initialTutorial:
   skipAreYouSure: "是否退出教学？"
   _landing:
     title: "欢迎来到教学"
-    description: "在这里，您可以查看 Misskey 的基本使用方法和功能。"
+    description: "在这里，您可以查看 泡泡社区 的基本使用方法和功能。"
   _note:
     title: "什么是帖子？"
-    description: "在 Misskey 上发表的文章称为「帖子」。帖子在时间线上按照时间顺序排列，并实时更新。"
+    description: "在 泡泡社区 上发表的文章称为「帖子」。帖子在时间线上按照时间顺序排列，并实时更新。"
     reply: "用来回复帖子。可以对回复进行回复，从而形成一串对话。"
     renote: "用来将帖子共享到自己的时间线上。也可以加上自己的文字然后引用它。"
     reaction: "用来添加回应。详细信息将在下一页进行说明。"
@@ -1380,7 +1380,7 @@ _initialTutorial:
     reactDone: "通过按下「ー」按钮，可以取消已经添加的回应"
   _timeline:
     title: "时间线的运作方式"
-    description1: "Misskey 根据使用方式提供了多个时间线（根据服务器的设定，可能有一些被禁用）。"
+    description1: "泡泡社区 根据使用方式提供了多个时间线（根据服务器的设定，可能有一些被禁用）。"
     home: "可以查看您关注的账户的帖子。"
     local: "可以查看这个服务器上所有用户发表的帖子。"
     social: "将同时显示首页时间线和本地时间线的内容。"
@@ -1390,7 +1390,7 @@ _initialTutorial:
     bubble: "可以查看来自管理员挑选的服务器上的帖子。"
   _postNote:
     title: "帖子发布设置"
-    description1: "在 Misskey 发布帖子时，您可以设置各种选项。发帖窗口看起来是这样的。\n"
+    description1: "在 泡泡社区 发布帖子时，您可以设置各种选项。发帖窗口看起来是这样的。\n"
     _visibility:
       description: "您可以限制谁可以看到您的帖子。"
       public: "向所有用户公开。\n"
@@ -1418,7 +1418,7 @@ _initialTutorial:
     doItToContinue: "将图像标记为敏感后才能够继续"
   _done:
     title: "恭喜您，已经完成了教程🎉\n"
-    description: "这里介绍的只是其中一小部分的功能。 要了解更多有关如何使用 Misskey 的更多信息，请访问 {link}。"
+    description: "这里介绍的只是其中一小部分的功能。 要了解更多有关如何使用 泡泡社区 的更多信息，请访问 {link}。"
 _timelineDescription:
   home: "首页时间线可以查看您关注的账户的帖子。"
   local: "本地时间线可以查看这个服务器上所有用户发表的帖子。"

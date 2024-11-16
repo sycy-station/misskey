@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	@closed="emit('closed')"
 >
 	<template #header>
-		MFM Cheatsheet
+		标记语言速查表
 	</template>
 	<MkStickyContainer>
 		<MkSpacer :contentMax="800">
@@ -410,7 +410,7 @@ const emit = defineEmits<{
 
 const preview_mention = ref('@example');
 const preview_hashtag = ref('#test');
-const preview_link = ref(`[${i18n.ts._mfm.dummy}](https://joinsharkey.org)`);
+const preview_link = ref(`[${i18n.ts._mfm.dummy}](https://paopaoshequ.com)`);
 const preview_emoji = ref(':heart:');
 const preview_bold = ref(`**${i18n.ts._mfm.dummy}**`);
 const preview_small = ref(

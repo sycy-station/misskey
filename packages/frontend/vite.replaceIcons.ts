@@ -321,7 +321,7 @@ export function pluginReplaceIcons() {
 					'ti ti-repeat-off': 'ph-repeat ph-bold ph-lg',
 					'ti ti-restore': 'ph-box-arrow-up ph-box ph-lg',
 					'ti ti-robot': 'ph-robot ph-bold ph-lg',
-					'ti ti-rocket': 'ph-share ph-bold ph-lg',
+					'ti ti-rocket': 'ph-rocket-launch ph-bold ph-lg',
 					'ti ti-rocket-off': 'ph-rocket ph-bold ph-lg',
 					'ti ti-rss': 'ph-rss ph-bold ph-lg',
 					'ti ti-search': 'ph-magnifying-glass ph-bold ph-lg',
