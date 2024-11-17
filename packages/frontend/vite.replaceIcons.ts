@@ -37,6 +37,7 @@ export function pluginReplaceIcons() {
 				},
 				include: [
 					'**/pages/**',
+					'**/components/MkAuthConfirm.*',
 				],
 			}),
 			iconsReplace({

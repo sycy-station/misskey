@@ -4,58 +4,39 @@ SPDX-License-Identifier: AGPL-3.0-only
 -->
 
 <template>
-<MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :contentMax="500">
-		<div v-if="state == 'fetch-session-error'">
-			<p>{{ i18n.ts.somethingHappened }}</p>
-		</div>
-		<div v-else-if="$i && !session">
-			<MkLoading/>
-		</div>
-		<div v-else-if="$i && session">
-			<XForm
-				v-if="state == 'waiting'"
-				class="form"
-				:session="session"
-				@denied="state = 'denied'"
-				@accepted="accepted"
-			/>
-			<div v-if="state == 'denied'">
-				<h1>{{ i18n.ts._auth.denied }}</h1>
-			</div>
-			<div v-if="state == 'accepted' && session">
-				<h1>{{ session.app.isAuthorized ? i18n.ts['already-authorized'] : i18n.ts._auth.allowed }}</h1>
-				<p v-if="session.app.callbackUrl">
-					{{ i18n.ts._auth.callback }}
-					<MkEllipsis/>
-				</p>
-				<p v-if="!session.app.callbackUrl">{{ i18n.ts._auth.pleaseGoBack }}</p>
+	<div>
+		<MkAnimBg style="position: fixed; top: 0;" />
+		<div :class="$style.formContainer">
+			<div :class="$style.form">
+				<MkAuthConfirm ref="authRoot" :name="session?.app.name" :permissions="_permissions"
+					:manualWaiting="manualWaiting" @accept="onAccept" @deny="onDeny">
+					<template #consentAdditionalInfo>
+						<div v-if="session?.app.callbackUrl != null" class="_gaps_s" :class="$style.redirectRoot">
+							<div>{{ i18n.ts._auth.byClickingYouWillBeRedirectedToThisUrl }}</div>
+							<div class="_monospace" :class="$style.redirectUrl">{{ session.app.callbackUrl }}</div>
+						</div>
+					</template>
+				</MkAuthConfirm>
 			</div>
 		</div>
-		<div v-else>
-			<p :class="$style.loginMessage">{{ i18n.ts._auth.pleaseLogin }}</p>
-			<MkSignin @login="onLogin"/>
-		</div>
-	</MkSpacer>
-</MkStickyContainer>
+	</div>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref, computed } from 'vue';
 import * as Misskey from 'misskey-js';
-import XForm from './auth.form.vue';
-import MkSignin from '@/components/MkSignin.vue';
 import { misskeyApi } from '@/scripts/misskey-api.js';
-import { $i, login } from '@/account.js';
 import { definePageMetadata } from '@/scripts/page-metadata.js';
 import { i18n } from '@/i18n.js';
+import { useTemplateRef } from 'vue';
+import MkAnimBg from '@/components/MkAnimBg.vue';
+import MkAuthConfirm from '@/components/MkAuthConfirm.vue';
 
 const props = defineProps<{
 	token: string;
 }>();
 
-const getUrlParams = () =>
+const getUrlParams = (): Record<any, any> =>
 	window.location.search
 		.substring(1)
 		.split('&')
@@ -65,16 +46,26 @@ const getUrlParams = () =>
 			return result;
 		}, {});
 
-const state = ref<'waiting' | 'accepted' | 'fetch-session-error' | 'denied' | null>(null);
 const session = ref<Misskey.entities.AuthSessionShowResponse | null>(null);
+const manualWaiting = ref(true)
 
-function accepted() {
-	state.value = 'accepted';
+const _permissions = computed(() => {
+	return (session.value ? session.value.app.permission.filter((p): p is typeof Misskey.permissions[number] => (Misskey.permissions as readonly string[]).includes(p)) : []);
+});
+
+const authRoot = useTemplateRef('authRoot');
+
+async function onAccept() {
+	manualWaiting.value = true
+	await misskeyApi('auth/accept', {
+		token: session.value.token,
+	});
+	manualWaiting.value = false
 	const isMastodon = !!getUrlParams().mastodon;
 	if (session.value && session.value.app.callbackUrl && isMastodon) {
 		const redirectUri = decodeURIComponent(getUrlParams().redirect_uri);
 		if (!session.value.app.callbackUrl.includes('elk.zone') && !session.value.app.callbackUrl.split('\n').includes(redirectUri)) {
-			state.value = 'fetch-session-error';
+			authRoot.value?.showUI('failed');
 			throw new Error('Callback URI doesn\'t match registered app');
 		}
 		const callbackUrl = session.value.app.callbackUrl.includes('elk.zone') ? new URL(session.value.app.callbackUrl) : new URL(redirectUri);
@@ -83,40 +74,31 @@ function accepted() {
 		location.href = callbackUrl.toString();
 	} else if (session.value && session.value.app.callbackUrl) {
 		const url = new URL(session.value.app.callbackUrl);
-		if (['javascript:', 'file:', 'data:', 'mailto:', 'tel:'].includes(url.protocol)) throw new Error('invalid url');
+		if (['javascript:', 'file:', 'data:', 'mailto:', 'tel:', 'vbscript:'].includes(url.protocol)) throw new Error('invalid url');
 		location.href = `${session.value.app.callbackUrl}?token=${session.value.token}`;
 	}
+	authRoot.value?.showUI('success');
 }
 
-function onLogin(res) {
-	login(res.i);
+function onDeny() {
+	authRoot.value?.showUI('denied');
 }
 
 onMounted(async () => {
-	if (!$i) return;
-
 	try {
 		session.value = await misskeyApi('auth/session/show', {
 			token: props.token,
 		});
-
 		// 既に連携していた場合
-		if (session.value.app.isAuthorized) {
-			await misskeyApi('auth/accept', {
-				token: session.value.token,
-			});
-			accepted();
-		} else {
-			state.value = 'waiting';
+		if (session.value?.app.isAuthorized) {
+			onAccept();
+			return
 		}
 	} catch (err) {
-		state.value = 'fetch-session-error';
+		authRoot.value?.showUI('failed');
 	}
+	manualWaiting.value = false
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata(() => ({
 	title: i18n.ts._auth.shareAccessTitle,
@@ -125,8 +107,38 @@ definePageMetadata(() => ({
 </script>
 
 <style lang="scss" module>
-.loginMessage {
-	text-align: center;
-	margin: 8px 0 24px;
+.formContainer {
+	min-height: 100svh;
+	padding: 32px 32px calc(env(safe-area-inset-bottom, 0px) + 32px) 32px;
+	box-sizing: border-box;
+	display: grid;
+	place-content: center;
+}
+
+.form {
+	position: relative;
+	z-index: 10;
+	border-radius: var(--radius);
+	background-color: var(--panel);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+	overflow: clip;
+	max-width: 500px;
+	width: calc(100vw - 64px);
+	height: min(65svh, calc(100svh - calc(env(safe-area-inset-bottom, 0px) + 64px)));
+	overflow-y: auto;
+}
+
+.redirectRoot {
+	padding: 16px;
+	border-radius: var(--radius);
+	background-color: var(--bg);
+}
+
+.redirectUrl {
+	font-size: 90%;
+	padding: 12px;
+	border-radius: var(--radius);
+	background-color: var(--panel);
+	overflow-x: scroll;
 }
 </style>
