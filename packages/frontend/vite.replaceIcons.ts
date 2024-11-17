@@ -146,7 +146,7 @@ export function pluginReplaceIcons() {
 					'ti ti-app-window': 'ph-app-window ph-bold ph-lg',
 					'ti ti-apple': 'ph-orange-slice ph-bold ph-lg',
 					'ti ti-archive': 'ph-archive ph-bold ph-lg',
-					'ti ti-arrow-back-up': 'ph-chat-circle-text ph-bold ph-lg',
+					'ti ti-arrow-back-up': 'ph-chat-circle ph-bold ph-lg',
 					'ti ti-arrow-bar-to-down': 'ph-arrow-line-down ph-bold ph-lg',
 					'ti ti-arrow-big-right': 'ph-arrow-fat-right ph-bold ph-lg',
 					'ti ti-arrow-down': 'ph-arrow-down ph-bold ph-lg',
