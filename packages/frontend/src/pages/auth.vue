@@ -55,7 +55,7 @@ const _permissions = computed(() => {
 
 const authRoot = useTemplateRef('authRoot');
 
-async function onAccept(token: string) {
+async function onAccept(token?: string) {
 	manualWaiting.value = true
 	await misskeyApi('auth/accept', {
 		token: session.value.token,
