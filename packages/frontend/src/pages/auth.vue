@@ -55,11 +55,11 @@ const _permissions = computed(() => {
 
 const authRoot = useTemplateRef('authRoot');
 
-async function onAccept() {
+async function onAccept(token: string) {
 	manualWaiting.value = true
 	await misskeyApi('auth/accept', {
 		token: session.value.token,
-	});
+	}, token);
 	manualWaiting.value = false
 	const isMastodon = !!getUrlParams().mastodon;
 	if (session.value && session.value.app.callbackUrl && isMastodon) {
