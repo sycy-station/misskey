@@ -27,7 +27,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 	<div v-else-if="defaultStore.reactiveState.useNativeUIForVideoAudioPlayer.value" :class="$style.nativeAudioContainer">
 		<audio
 			ref="audioEl"
-			preload="metadata"
 			controls
 			:class="$style.nativeAudio"
 			@keydown.prevent
@@ -39,7 +38,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 	<div v-else :class="$style.audioControls">
 		<audio
 			ref="audioEl"
-			preload="metadata"
 			@keydown.prevent="() => {}"
 		>
 			<source :src="audio.url">
