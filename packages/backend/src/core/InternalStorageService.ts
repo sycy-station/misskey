@@ -41,13 +41,15 @@ export class InternalStorageService {
 	@bindThis
 	public async saveFromPath(key: string, srcPath: string): Promise<string> {
 		await copyFile(srcPath, this.resolvePath(key));
-		return `${this.config.url}/files/${key}`;
+		const baseUrl = this.config.cdnBaseUrl ? this.config.cdnBaseUrl : this.config.url;
+		return `${baseUrl}/files/${key}`;
 	}
 
 	@bindThis
 	public async saveFromBuffer(key: string, data: Buffer): Promise<string> {
 		await writeFile(this.resolvePath(key), data);
-		return `${this.config.url}/files/${key}`;
+		const baseUrl = this.config.cdnBaseUrl ? this.config.cdnBaseUrl : this.config.url;
+		return `${baseUrl}/files/${key}`;
 	}
 
 	@bindThis

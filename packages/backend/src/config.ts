@@ -102,6 +102,7 @@ type Source = {
 	videoThumbnailGenerator?: string;
 
 	customMOTD?: string[];
+	cdnBaseUrl?: string;
 
 	signToActivityPubGet?: boolean;
 	attachLdSignatureForRelays?: boolean;
@@ -175,6 +176,7 @@ export type Config = {
 	inboxJobMaxAttempts: number | undefined;
 	proxyRemoteFiles: boolean | undefined;
 	customMOTD: string[] | undefined;
+	cdnBaseUrl: string | undefined;
 	signToActivityPubGet: boolean;
 	attachLdSignatureForRelays: boolean;
 	checkActivityPubGetSignature: boolean | undefined;
@@ -333,6 +335,7 @@ export function loadConfig(): Config {
 		inboxJobMaxAttempts: config.inboxJobMaxAttempts,
 		proxyRemoteFiles: config.proxyRemoteFiles,
 		customMOTD: config.customMOTD,
+		cdnBaseUrl: config.cdnBaseUrl,
 		signToActivityPubGet: config.signToActivityPubGet ?? true,
 		attachLdSignatureForRelays: config.attachLdSignatureForRelays ?? true,
 		checkActivityPubGetSignature: config.checkActivityPubGetSignature,

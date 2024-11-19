@@ -347,3 +347,5 @@ checkActivityPubGetSignature: false
 
 # PID File of master process
 #pidFile: /tmp/misskey.pid
+
+#cdnBaseUrl: https://cdn.example.tld
