@@ -6,7 +6,7 @@
 import { markRaw, ref } from 'vue';
 import * as Misskey from 'misskey-js';
 import { hemisphere } from '@@/js/intl-const.js';
-import lightTheme from '@@/themes/l-cherry.json5';
+import lightTheme from '@@/themes/l-rainy.json5';
 import darkTheme from '@@/themes/d-ice.json5';
 import { miLocalStorage } from './local-storage.js';
 import { searchEngineMap } from './scripts/search-engine-map.js';

@@ -8,7 +8,7 @@ await main();
 import('@/_boot_.js');
 
 /**
- * backend/src/server/web/boot.jsで差し込まれている起動処理のうち、最低限必要なものを模倣するための処理
+ * 模拟插入 backend/src/server/web/boot.js 中的最小必要启动处理的处理
  */
 async function main() {
 	const forceError = localStorage.getItem('forceError');
@@ -18,7 +18,7 @@ async function main() {
 
 	//#region Detect language & fetch translations
 
-	// dev-modeの場合は常に取り直す
+	// 始终在开发模式下重新获取
 	const supportedLangs = _LANGS_.map(it => it[0]);
 	let lang: string | null | undefined = localStorage.getItem('lang');
 	if (lang == null || !supportedLangs.includes(lang)) {
@@ -32,7 +32,7 @@ async function main() {
 		}
 	}
 
-	// TODO:今のままだと言語ファイル変更後はpnpm devをリスタートする必要があるので、chokidarを使ったり等で対応できるようにする
+	// TODO: 就目前情况而言，更改语言文件后需要重新启动 pnpm dev，因此请确保使用 chokidar 等。
 	const locale = _LANGS_FULL_.find(it => it[0] === lang);
 	localStorage.setItem('lang', lang);
 	localStorage.setItem('locale', JSON.stringify(locale[1]));

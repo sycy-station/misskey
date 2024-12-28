@@ -1,9 +1,9 @@
 {
 	id: '4eea646f-7afa-4645-83e9-83af0333cd37',
 
-	name: 'Mi Light',
-	author: 'syuilo',
-	desc: 'Default light theme',
+	name: '绿色亮色主题',
+	author: 'skymansion.net',
+	desc: '默认亮色主题',
 
 	base: 'light',
 
