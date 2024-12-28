@@ -9,9 +9,10 @@ import { IRouter, Resolved, RouteDef, RouterEvent } from '@/nirax.js';
 import type { App, ShallowRef } from 'vue';
 
 /**
- * {@link Router}による画面遷移を可能とするために{@link mainRouter}をセットアップする。
- * また、{@link Router}のインスタンスを作成するためのファクトリも{@link provide}経由で公開する（`routerFactory`というキーで取得可能）
+ * 设置 {@link mainRouter} 以通过 {@link Router} 实现页面跳转。
+ * 同时，通过 {@link provide} 对外公开用于创建 {@link Router} 实例的工厂（可以通过键名 `routerFactory` 获取）。
  */
+
 export function setupRouter(app: App, routerFactory: ((path: string) => IRouter)): void {
 	app.provide('routerFactory', routerFactory);
 
@@ -48,8 +49,8 @@ function getMainRouter(): IRouter {
 }
 
 /**
- * メインルータを設定する。一度設定すると、それ以降は変更できない。
- * {@link setupRouter}から呼び出されることのみを想定している。
+ * 配置主路由器。一旦设定，之后就无法更改。
+ * 它只能从 {@link setupRouter} 调用。
  */
 export function setMainRouter(router: IRouter) {
 	if (mainRouterHolder) {
@@ -60,9 +61,9 @@ export function setMainRouter(router: IRouter) {
 }
 
 /**
- * {@link mainRouter}用のプロキシ実装。
- * {@link mainRouter}は起動シーケンスの一部にて初期化されるため、僅かにundefinedになる期間がある。
- * その僅かな期間のためだけに型をundefined込みにしたくないのでこのクラスを緩衝材として使用する。
+ * {@link mainRouter} 的代理实现。
+ * {@link mainRouter} 作为启动序列的一部分进行初始化，因此有一段时间未定义。
+ * 我不希望类型在那么短的时间内未定义，因此我使用此类作为缓冲区。
  */
 class MainRouterProxy implements IRouter {
 	private supplier: () => IRouter;

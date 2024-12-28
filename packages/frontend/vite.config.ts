@@ -13,11 +13,11 @@ import { pluginReplaceIcons } from './vite.replaceIcons.js';
 const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.json5', '.svg', '.sass', '.scss', '.css', '.vue', '.wasm'];
 
 /**
- * Misskeyのフロントエンドにバンドルせず、CDNなどから別途読み込むリソースを記述する。
- * CDNを使わずにバンドルしたい場合、以下の配列から該当要素を削除orコメントアウトすればOK
+ * 编写不与Misskey前端捆绑、与CDN等分开加载的资源。
+ * 如果您想在不使用 CDN 的情况下进行捆绑，只需从下面的数组中删除或注释掉相关元素即可。
  */
 const externalPackages = [
-	// shiki（コードブロックのシンタックスハイライトで使用中）はテーマ・言語の定義の容量が大きいため、それらはCDNから読み込む
+	// shiki（用于代码块语法高亮）有大量主题/语言定义，因此从 CDN 加载
 	{
 		name: 'shiki',
 		match: /^shiki\/(?<subPkg>(langs|themes))$/,
@@ -66,7 +66,7 @@ export function getConfig(): UserConfig {
 
 		server: {
 			port: 5173,
-			headers: { // なんか効かない
+			headers: { // 有些东西不起作用
 				'X-Frame-Options': 'DENY',
 			},
 		},
