@@ -1,7 +1,7 @@
 {
 	id: '919c91ac-c6fa-43dc-a423-3cc84fd67d7c',
 	base: 'light',
-	name: ' Rosé Pine Dawn',
+	name: ' 玫瑰松黎明',
 	description: 'Soho vibes for Misskey, dawn edition',
 	props: {
 		accent: '#286983',

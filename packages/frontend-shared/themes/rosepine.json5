@@ -2,7 +2,7 @@
 	id: '3cdfd635-4d5e-4d06-9ba3-20f123f0999b',
 	base: 'dark',
 	desc: 'Soho vibes for Misskey',
-	name: 'Rosé Pine v3',
+	name: '玫瑰松 v3',
 	props: {
 		X2: ':darken<2<@panel',
 		X3: 'rgba(255, 255, 255, 0.05)',
